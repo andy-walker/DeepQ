@@ -1,0 +1,25 @@
+{
+  "name": "agent-server",
+  "version": "0.1.0",
+  "description": "RL Agent Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andy-walker/agent-server.git"
+  },
+  "author": "andyw@home",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/andy-walker/agent-server/issues"
+  },
+  "homepage": "https://github.com/andy-walker/agent-server#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "express": "^4.14.1",
+    "sequelize": "^3.30.2",
+    "winston": "^2.3.1"
+  }
+}

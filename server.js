@@ -7,8 +7,8 @@
 
 var Component = {
     //DB:     require('./server/components/db'),
-    Config: require('./server/components/config')//,
-    //Server: require('./server/components/webserver'),
+    Config: require('./server/components/config'),
+    Server: require('./server/components/webserver')
     //Zoo:    require('./server/components/zoo')
 };
 
@@ -52,7 +52,14 @@ class AgentServer {
 
             // abort startup if config was not successfully loaded
             if (!success)
-                return; 
+                return;
+
+            var webconfig = app.config.get('server');
+
+            if (!webconfig)
+                log.warn('No server configuration was defined in config.yml, using defaults.');
+
+            yield app.server.start(webconfig);
 
         })(this).catch(log.error);
 

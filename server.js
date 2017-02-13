@@ -1,15 +1,17 @@
 /**
- * RL Agent Server
+ * The Zoo - a server for training RL agents
  * @author andyw@home, 11/02/2017
  */
  
  "use strict";
 
 var Component = {
-    //DB:     require('./server/components/db'),
-    Config: require('./server/components/config'),
-    Server: require('./server/components/webserver')
-    //Zoo:    require('./server/components/zoo')
+    
+    Config:   require('./server/components/config'),
+    Entities: require('./server/components/entities'),
+    Server:   require('./server/components/webserver'),
+    Zoo:      require('./server/components/zoo')
+
 };
 
 class AgentServer {
@@ -20,6 +22,7 @@ class AgentServer {
      constructor() {
 
         this.log = require('winston');
+        this.dir = __dirname;
 
         this.config = {};
         this.db     = {};
@@ -37,15 +40,13 @@ class AgentServer {
 
         log.info('Starting server ...');
 
+        // instantiate components
         this.config = new Component.Config();
-        /*
-        this.db     = new Component.DB();
+        this.entity = new Component.Entities();
         this.server = new Component.Server();
         this.zoo    = new Component.Zoo();
-        */
 
-        this.server = new Component.Server();
-
+        // start components
         require('bluebird').coroutine(function*(app) {
 
             var success = yield app.config.load();
@@ -62,7 +63,6 @@ class AgentServer {
             yield app.server.start(webconfig);
 
         })(this).catch(log.error);
-
 
      }
 

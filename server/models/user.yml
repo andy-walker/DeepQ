@@ -1,0 +1,14 @@
+attributes:
+
+    id:
+        type:          INTEGER
+        primaryKey:    true
+        autoIncrement: true
+
+    config:
+        type: JSON
+
+    brain:
+        type: JSON
+
+

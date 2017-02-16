@@ -1,0 +1,14 @@
+attributes:
+
+    name:
+        type:       STRING
+        primaryKey: true
+        unique:     true
+
+    config:
+        type: JSON
+
+    brain:
+        type: JSON
+
+

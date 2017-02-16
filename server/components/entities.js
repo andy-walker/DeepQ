@@ -3,6 +3,7 @@
 var _            = require('lodash');
 var Sequelize    = require('sequelize');
 var coroutine    = require('bluebird').coroutine;
+var path         = require('path');
 var EntityLoader = require('./entity/loader');
 
 module.exports = class Entities {
@@ -61,7 +62,7 @@ module.exports = class Entities {
             var config = app.config.get('db');
             var log    = app.log;
             
-            if (empty(config))
+            if (!config)
                 return log.error('Unable to connect to database. No db settings found in config.');
 
             var logger = () => null;

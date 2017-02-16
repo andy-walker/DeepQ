@@ -2,6 +2,10 @@
 
 var coroutine = require('bluebird').coroutine;
 var yaml      = require('js-yaml');
+var _         = require('lodash');
+var fs        = require('fs-promise');
+var path      = require('path');
+var Sequelize = require('sequelize');
 
 module.exports = class EntityLoader {
 

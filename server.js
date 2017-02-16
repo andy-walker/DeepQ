@@ -60,6 +60,8 @@ class AgentServer {
             if (!webconfig)
                 log.warn('No server configuration was defined in config.yml, using defaults.');
 
+
+            yield app.entity.initialize();
             yield app.server.start(webconfig);
 
         })(this).catch(log.error);

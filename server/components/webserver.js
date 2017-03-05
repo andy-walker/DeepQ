@@ -4,15 +4,27 @@
 
 "use strict";
 
-var express   = require('express');
-var webapp    = express();
-var webserver = require('http').Server(webapp);
-var Promise   = require('bluebird');
-var path      = require('path');
+var express    = require('express');
+var bodyParser = require('body-parser');
+var webapp     = express();
+var webserver  = require('http').Server(webapp);
+var Promise    = require('bluebird');
+var coroutine  = Promise.coroutine;
+var path       = require('path');
 
 var webroot = path.resolve(__dirname, '..', '..', 'client');
+var AjaxAPI = require('./webserver/ajax');
+var RestAPI = require('./webserver/rest');
 
 class Webserver {
+
+    /**
+     * Constructor
+     */
+    constructor() {
+        this.ajax = new AjaxAPI();
+        this.rest = new RestAPI();
+    }
 
     /**
      * Start webserver
@@ -21,7 +33,8 @@ class Webserver {
      */
     start(config) {
 
-        config = config || {};
+        var server = this;
+        config     = config || {};
 
         return new Promise((resolve, reject) => {
 
@@ -57,12 +70,38 @@ class Webserver {
 
             });
 
+            webapp.use(bodyParser.json());
             webapp.use(express.static(webroot));
 
-            webapp.get('/api', function(req, res) {
-                res.send('OK:1');
+            webapp.get('/api/act',    server.rest.agentAct);
+            webapp.get('/api/reward', server.rest.rewardAgent);
+            
+            webapp.post('/ajax/agent/delete', server.ajax.deleteAgent);
+            webapp.post('/ajax/agent/load',   server.ajax.loadAgent);
+            webapp.post('/ajax/agent/save',   server.ajax.saveAgent);
+            webapp.post('/ajax/agent/search', server.ajax.searchAgents);
+            
+            // define a route handler for exporting agents
+            webapp.get('/export/:name', function(request, response) {
+                
+                return coroutine(function*() {
+
+                    var name   = request.params.name;
+                    var result = yield app.deepq.exportAgent(name);
+
+                    if (result instanceof Error)
+                        return response.send(JSON.stringify({
+                            status: 'error',
+                            message: result.message
+                        }));
+
+                    response.send(JSON.stringify(result));
+
+                })().catch(app.log.error);  
+
             });
 
+            // start web server ..
             webserver.listen(port, ip, 511, (error, result) => {
                 
                 if (error) {

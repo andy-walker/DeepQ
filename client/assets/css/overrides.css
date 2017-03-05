@@ -3,7 +3,7 @@
 }
 
 .logo {
-    margin-left:-35px;
+    margin-left:-45px;
 }
 
 #content {
@@ -20,15 +20,40 @@
     width: calc(100% - 47px);
     height: 100%;
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(.25,.1,.25,1) 0s;
+    z-index:-1;
+    transition: all 0.4s cubic-bezier(.25,.1,.25,1) 0s;
+    overflow:hidden;
+}
+
+#agent-slider {
+    width:200%;
+    transition: all 0.4s cubic-bezier(.25,.1,.25,1) 0s;
+}
+
+.section-list, .section-edit {
+    float:left;
+    width:50%;
+}
+
+.slider-edit {
+    margin-left:-100%;
 }
 
 .section-content {
+
+}
+
+.section-buttons {
     padding: 8px 6px;
 }
 
 .active {
     opacity: 1;
+    z-index: 1;
+}
+
+.page-title {
+    text-transform:uppercase;
 }
 
 .btn {
@@ -44,7 +69,55 @@
     margin-right:4px;
 }
 
+.btn.icon-right {
+    padding-right:10px;
+}
+
+.btn.icon-right i {
+    margin-left:4px;
+}
+
 .btn-alt:hover {
     color:white !important;
     background:rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Lists */
+.agent {
+    padding:12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.4s cubic-bezier(.25,.1,.25,1) 0s;
+    cursor:pointer;
+}
+
+.agent .arrow {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    margin-top: -10px;
+    font-size: 1.5em;
+    color:rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(.25,.1,.25,1) 0s;
+}
+
+.agent:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Forms */
+.control-label {
+    text-align: right;
+    padding-top: 0.7em;
+    padding-right: 1em;
+}
+
+.update-inline {
+    float:left;
+    width:80px;
+}
+
+.btn.icon-only {
+    margin-top: 4px;
+    padding: 2px 7px 3px 7px;
+    border-radius: 7px !important;
 }

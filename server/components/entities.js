@@ -39,7 +39,7 @@ module.exports = class Entities {
         this.model[name] = this.db.define(name, attributes, options);
 
         // sync the model
-        return this.model[name].sync({force:true});
+        return this.model[name].sync({force: false});
 
     }
 
@@ -72,7 +72,7 @@ module.exports = class Entities {
                 switch (true) {
                     
                     case config.logging === true:
-                        logger = log;
+                        //logger = log;
                         break;
                     
                     case typeof config.logging == 'string':
@@ -97,9 +97,9 @@ module.exports = class Entities {
                 },
 
                 // SQLite only
-                storage: path.resolve(app.dir, 'server', 'zoo.db'),
+                storage: path.resolve(app.dir, 'deepq.db'),
 
-                logging: logger
+                //logging: logger
 
             });
             

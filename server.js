@@ -1,16 +1,18 @@
 /**
- * The Zoo - a server for training RL agents
+ * DeepQ - a server for training RL agents
  * @author andyw@home, 11/02/2017
  */
  
- "use strict";
+"use strict";
+
+require('./server/lib/rl.js');
 
 var Component = {
     
-    Config:   require('./server/components/config'),
-    Entities: require('./server/components/entities'),
-    Server:   require('./server/components/webserver'),
-    Zoo:      require('./server/components/zoo')
+    Config:    require('./server/components/config'),
+    Entities:  require('./server/components/entities'),
+    Server:    require('./server/components/webserver'),
+    DeepQ:     require('./server/components/deepq')
 
 };
 
@@ -41,10 +43,10 @@ class AgentServer {
         log.info('Starting server ...');
 
         // instantiate components
-        this.config = new Component.Config();
-        this.entity = new Component.Entities();
-        this.server = new Component.Server();
-        this.zoo    = new Component.Zoo();
+        this.config    = new Component.Config();
+        this.entity    = new Component.Entities();
+        this.server    = new Component.Server();
+        this.deepq     = new Component.DeepQ();
 
         // start components
         require('bluebird').coroutine(function*(app) {
@@ -59,8 +61,7 @@ class AgentServer {
 
             if (!webconfig)
                 log.warn('No server configuration was defined in config.yml, using defaults.');
-
-
+              
             yield app.entity.initialize();
             yield app.server.start(webconfig);
 

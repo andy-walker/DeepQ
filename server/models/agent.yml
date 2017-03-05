@@ -3,12 +3,13 @@ attributes:
     name:
         type:       STRING
         primaryKey: true
-        unique:     true
 
-    config:
+    env:
+        type: JSON
+
+    spec:
         type: JSON
 
     brain:
         type: JSON
-
 

@@ -5,10 +5,8 @@ attributes:
         primaryKey:    true
         autoIncrement: true
 
-    config:
-        type: JSON
+    name:
+        type: STRING
 
-    brain:
-        type: JSON
-
-
+    pass:
+        type: STRING

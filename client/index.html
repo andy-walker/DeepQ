@@ -5,7 +5,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta charset="UTF-8">
 
-  <title>The Zoo</title>
+  <title>Deep Q</title>
 
   <!-- CSS -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -20,34 +20,37 @@
 </head>
 <body id="skin-blur-kiwi">
   <header id="header" class="media">
-    <a class="logo pull-left" href="index.html">THE ZOO v0.1.0</a>
+    <a class="logo pull-left" href="index.html">DEEP Q v0.1.0</a>
   </header>
   <div class="clearfix"></div>
 
-  <section id="main" class="p-relative" role="main" ng-app="TheZoo" ng-controller="AppCtrl" ng-cloak>
+  <section id="main" class="p-relative" role="main" ng-app="DeepQ" ng-controller="AppCtrl" ng-cloak>
 
     <!-- Sidebar -->
     <aside id="sidebar">
       <ul class="list-unstyled side-menu">
         <li class="active">
-          <a class="sa-side-home" ng-click="changeSection('agents')">
+          <a class="sa-side-home" ng-click="changeSection('agent')">
             <span class="menu-item">Agents</span>
           </a>
         </li>
         <li>
-          <a class="sa-side-typography" ng-click="changeSection('training')">
-            <span class="menu-item">Training</span>
+          <a class="sa-side-typography" ng-click="changeSection('user')">
+            <span class="menu-item">Users</span>
           </a>
         </li>
       </ul>
     </aside>
 
-    <section id="agents-section" class="section-container" ng-class="{active: activeSection == 'agents'}">
-      <div ng-include="'app/views/agents-overview.html'"></div>
+    <section id="agent-section" class="section-container" ng-class="{active: activeSection == 'agent'}">
+      <div id="agent-slider" ng-class="{ 'slider-edit': section.agent.mode == 'edit' }">
+        <div class="section-list" ng-include="'app/views/agent-list.html'"></div>
+        <div class="section-edit" ng-include="'app/views/agent-edit.html'"></div>
+      </div>
     </section>
 
-    <section id="training-section" class="section-container" ng-class="{active: activeSection == 'training'}">
-      <div ng-include="'app/views/training-overview.html'"></div>
+    <section id="user-section" class="section-container" ng-class="{active: activeSection == 'user'}">
+      <div ng-include="'app/views/user-list.html'"></div>
     </section>
 
   </section>
@@ -58,8 +61,9 @@
 
   <script src="app/app.js"></script>
   <script src="app/controllers/app.js"></script>
-  <script src="app/controllers/agents-overview.js"></script>
-  <script src="app/controllers/training-overview.js"></script>
+  <script src="app/controllers/agent-list.js"></script>
+  <script src="app/controllers/agent-edit.js"></script>
+  <script src="app/controllers/user-list.js"></script>
 
 </body>
 </html>

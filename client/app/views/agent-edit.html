@@ -1,0 +1,116 @@
+<div ng-controller="AgentEditCtrl">
+  <h4 class="page-title"><span ng-hide="form.name">NEW AGENT</span>{{form.name}}</h4>
+  <div class="section-buttons">
+    <div class="pull-left">
+       <button class="btn btn-sm btn-alt m-r-5 icon-left" ng-click="changeMode()"><i class="fa fa-chevron-left"></i> Back</button>
+    </div>
+    <div class="pull-right">
+      <button class="btn btn-sm btn-alt m-r-5 icon-right" ng-click="saveForm()">Save <i class="fa fa-check"></i></button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="section-content">
+    
+    <form id="agent-edit-form" class="form-horizontal" autocomplete="off">
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Name:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.name" filter-name />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">No of Inputs:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.env.states" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">No of Actions:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.env.actions" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Update:</label>
+        <div class="col-sm-8">
+          <div class="radio">
+            <label class="update-inline">
+              <div class="iradio_minimal" aria-checked="true" aria-disabled="false" style="position: relative;">
+                <input type="radio" name="update" value="1" />
+              </div>
+              qlearn
+            </label>
+            <label class="update-inline">
+              <div class="iradio_minimal" aria-checked="false" aria-disabled="false" style="position: relative;">
+                <input type="radio" name="update" value="0" />
+              </div>
+              sarsa
+            </label>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Gamma:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.gamma" filter-float />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Epsilon:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.epsilon" filter-float />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Alpha:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.alpha" filter-float />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Experience Interval:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.experience_add_every" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Experience Size:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.experience_size" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Steps per Iteration:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.learning_steps_per_iteration" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Error Clamp:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.tderror_clamp" filter-integer />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">Hidden Units:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="form.spec.num_hidden_units" filter-integer />
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -43,7 +43,7 @@ class Webserver {
             var admin = app.config.get('admin'); 
 
             // Authentication callback
-            webapp.use(function(req, res, next) {
+            webapp.use((req, res, next) => {
                 
                 var auth;
 
@@ -82,7 +82,7 @@ class Webserver {
             webapp.post('/ajax/agent/search', server.ajax.searchAgents);
             
             // define a route handler for exporting agents
-            webapp.get('/export/:name', function(request, response) {
+            webapp.get('/export/:name', (request, response) => {
                 
                 return coroutine(function*() {
 

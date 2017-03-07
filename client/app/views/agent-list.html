@@ -2,7 +2,7 @@
   <button class="btn btn-sm btn-alt m-r-5 icon-only pull-right" ng-click="changeMode()"><i class="fa fa-plus"></i></button>
   <h4 class="page-title">AGENTS</h4>
   <div class="section-content">
-    <div id="agent-list" ng-repeat="result in results" class="agent" ng-click="changeMode()">
+    <div id="agent-list" ng-repeat="result in results" class="agent" ng-click="changeMode(result.name)">
       <h4>{{result.name}}</h4>
       <div class="arrow"></div>
     </div>

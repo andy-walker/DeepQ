@@ -29,7 +29,7 @@ class AgentServer {
         this.config = {};
         this.db     = {};
         this.server = {};
-        this.zoo    = {};
+        this.deepq  = {};
 
      }
 
@@ -43,10 +43,10 @@ class AgentServer {
         log.info('Starting server ...');
 
         // instantiate components
-        this.config    = new Component.Config();
-        this.entity    = new Component.Entities();
-        this.server    = new Component.Server();
-        this.deepq     = new Component.DeepQ();
+        this.config = new Component.Config();
+        this.entity = new Component.Entities();
+        this.server = new Component.Server();
+        this.deepq  = new Component.DeepQ();
 
         // start components
         require('bluebird').coroutine(function*(app) {
